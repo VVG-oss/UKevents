@@ -283,6 +283,7 @@ Deliver one Excel workbook per run (e.g. `data/UK_Events_TrackB_<window>.xlsx`),
   <emoji> <Event name>, <place> — <one-line hook>, <date>.
   ```
   Themes: interest blocks use their interest (FILM, MUSIC, CS2 & LAN, VALORANT & LAN, GIRLS' NIGHTS OUT…); school blocks use the city (LONDON & CAMPUS, GLASGOW NIGHTS, CARDIFF…). Every line must fit **this** community (see Verification lessons). For unconfirmed dates write "TBC" / "late Oct"; never state a guessed date as fact.
+- **Set row heights explicitly.** Excel never auto-fits merged cells. Leave the heights unset and a block shows only the first line or two of its 发布文案, so the copy looks missing. Size each block so its rows add up to at least the height of the wrapped copy. Size each event row to fit its own wrapped text.
 - **Row order** inside a block: 高热度 → 中热度 → 潜在价值. Colour-code `热度` (高 = light red, 中 = light yellow, 潜在价值 = light grey).
 - **`同一活动也推给`** names the other blocks that also carry this event, so the user can post in sync.
 - **Block order**: interest communities first, then university communities, both in community-list order. Freeze the header row only (freezing columns has broken merged-cell display in some viewers). Add an autofilter.
