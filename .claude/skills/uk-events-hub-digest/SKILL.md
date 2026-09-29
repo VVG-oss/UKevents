@@ -252,6 +252,11 @@ Each of these actually happened in a run. Run the check that catches each one be
 - **Post copy must match the community.** When CS2 Frag Hub and Valorant Riot Crew were merged into one block, the Valorant group got a line about a "CS2 tournament". Fireworks nights with a DJ set were put under Live Music Crew. Each line in a community's copy has to be about that community's own interest. An event that is only loosely adjacent goes to the school/city block, not the interest block.
 - **Sold out = don't push.** Leave out events whose official box office shows sold out (Samhuinn Fire Festival, Moseley fireworks). List them in the gaps sheet instead.
 - **Fatsoma template copy.** "Biggest Halloween Event / 10,000 People" (Project Halloween) appeared word-for-word for several cities. Never use it as heat evidence.
+- **Addresses must be researched, never guessed.** Briarlands Farm was first written as "Cambusbarron / Craigforth area" from a guess; it is actually at Blairdrummond, FK9 4UP. Search `<venue> address postcode` for every venue. Tag `address_quality` by these rules:
+  - `exact`: named venue + street and/or postcode. For public spaces a street/square name is enough.
+  - `venue_only`: named venue(s) without a full street address. For multi-venue festivals, list the main venues by name (+ street if known), and for parades and trails give the route or the named hubs (e.g. Paisley parade route, Light Night info hub at Millennium Square), rather than writing "多个场地".
+  - `city_only`: only when the organiser genuinely hasn't published a venue (e.g. Lonely Girls Club reveals the venue only after booking). Say why in the address cell.
+  - Anything still unknown goes in `待核实与缺口` as `地址未明`.
 - **Unique event keys.** If you build the table from code, give every event a unique key and assert on duplicates. A reused key silently overwrote one event with another (Richmond Fireworks got replaced by Rich Hall).
 
 ## Environment note (claude.ai/code cloud sessions)
