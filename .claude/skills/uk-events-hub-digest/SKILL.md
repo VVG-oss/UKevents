@@ -56,16 +56,16 @@ University of Sheffield    — school-specific: events in/near Sheffield
 St Mary's University, Twickenham — school-specific: events in/near Twickenham / south-west London (Richmond, Kingston); central London only if easy to reach
 King's College London      — school-specific: events in/near central London (Strand/Waterloo/Guy's campuses)
 London School of Economics — school-specific: events in/near central London (Holborn/Aldwych)
-LSE 0926 fresher picnic    — ⚠️ LSE freshers group built around a one-off picnic (0926 read as 26 Sep — already past as of 29 Sep 2026); treat as LSE audience, events in/near central London; confirm with user whether still active
+LSE 0926 fresher picnic    — society group (社团群): LSE freshers group that formed around a picnic (0926 = 26 Sep, already past as of 29 Sep 2026) — treat as an LSE student audience, events in/near central London
 Queen Mary University of London — school-specific: events in/near east London (Mile End/Whitechapel)
-Kensington House Social    — ⚠️ location-based, assumed a student residence in Kensington, London — events in/near Kensington/west London; confirm exact building/city with user
+Kensington House Social    — student residence group (公寓群): residents of Kensington House — ⚠️ city not yet confirmed (London Kensington is the assumed default); confirm with user before searching
 University of Lancashire   — school-specific: formerly UCLan, main campus Preston — events in/near Preston
 University of Lancaster    — school-specific: **Lancaster University** — events in/near Lancaster (different town from Preston — don't merge with University of Lancashire)
 University of Chester      — school-specific: events in/near Chester
 University of Strathclyde  — school-specific: events in/near Glasgow city centre
-University of Strathclyde Chinese Students and Scholars — school + affinity: Strathclyde Chinese students (CSSA) — Glasgow events, favour ones with Chinese/East Asian or international-student appeal
+University of Strathclyde Chinese Students and Scholars — society group (思克莱德大学中秋群): Strathclyde Chinese students, group formed around Mid-Autumn Festival (25 Sep 2026, already past) — Glasgow events, favour ones with Chinese/East Asian or international-student appeal (festivals, Asian food, cultural events)
 The University of Manchester — school-specific: events in/near Manchester
-UOM TWSOC 26/27            — school + affinity: University of Manchester Taiwanese Society 2026/27 — Manchester events, favour Taiwanese/East Asian or international-student appeal
+UOM TWSOC 26/27            — society group (社团群): University of Manchester Taiwanese Society 2026/27 — Manchester events, favour Taiwanese/East Asian or international-student appeal
 Newcastle university       — school-specific: events in/near Newcastle upon Tyne
 Newcastle university 2     — school-specific: second group of the same Newcastle University audience — same matches as Newcastle university
 Northumbria university     — school-specific: events in/near Newcastle upon Tyne
@@ -79,24 +79,24 @@ University of Leicester    — school-specific: events in/near Leicester
 Staffs Student Life | Stoke — school-specific: **Staffordshire University** — events in/near Stoke-on-Trent
 Keele Campus Life          — school-specific: **Keele University** — events on campus / in Newcastle-under-Lyme / Stoke-on-Trent
 Harper Adams Campus Life   — school-specific: **Harper Adams University** (rural, Newport, Shropshire) — events in/near Newport/Telford; rural campus, so countryside/agri/day-trip events fit well
-SCCB| Birmingham Student Life — location-based: Birmingham student community (SCCB assumed to be a Birmingham student group/residence — ⚠️ confirm with user) — events in/near Birmingham
-88 Bromsgrove Social Hub   — location-based: residents of 88 Bromsgrove Street student accommodation, Birmingham (Southside/Chinatown) — events in/near Birmingham city centre
-true Birmingham Social Hub — location-based: residents of "true Birmingham" student accommodation — events in/near Birmingham city centre
-Birmingham Chinatown | Food &Events — location + interest: food and events in/near Birmingham's Chinatown/Southside (Arcadian, Hurst St) — food openings, Asian food markets, Chinese festivals (e.g. Mid-Autumn, Lunar New Year)
-Bristol Rd Food & Drinks   — location + interest: food/drink along **Bristol Road, Birmingham** (Selly Oak/Edgbaston, next to University of Birmingham) — new openings, food deals, bar/café events on or near that strip. Not Bristol the city.
+SCCB| Birmingham Student Life — school-specific: **South & City College Birmingham** (FE college, campuses incl. Digbeth/Hall Green/Bournville) — events in/near Birmingham
+88 Bromsgrove Social Hub   — student residence group (公寓群): residents of 88 Bromsgrove Street, Birmingham (Southside/Chinatown) — events in/near Birmingham city centre
+true Birmingham Social Hub — student residence group (公寓群): residents of "true Birmingham" student accommodation — events in/near Birmingham city centre
+Birmingham Chinatown | Food &Events — society group (社团群), location + interest: food and events in/near Birmingham's Chinatown/Southside (Arcadian, Hurst St) — food openings, Asian food markets, Chinese festivals (e.g. Mid-Autumn, Lunar New Year)
+Bristol Rd Food & Drinks   — student residence group (公寓群): residents of **Bristol Road & Selly Oak** student accommodation, Birmingham (next to University of Birmingham) — events in/near Selly Oak/Edgbaston and Birmingham city centre; despite the name, not restricted to food/drink. Not Bristol the city.
 University of Cardiff      — school-specific: **Cardiff University** — events in/near Cardiff
 Cardiff Metropolitan University — school-specific: events in/near Cardiff (Llandaff/Cyncoed)
 University of Edinburgh Freshers 2026 — school-specific: events in/near Edinburgh
 University of Aberdeen Freshers 2026 — school-specific: events in/near Aberdeen
-UOL BCS 26/27              — ⚠️ school + affinity, identity unconfirmed: "UOL" could be University of Liverpool / Leicester / London, "BCS" unclear (e.g. a society name) — ask user before searching for this one
-Straits Manor              — ⚠️ identity unconfirmed (possibly a student residence) — ask user for city/audience before searching for this one
+UOL BCS 26/27              — society group (社团群), 2026/27 — ⚠️ "UOL" university not confirmed (Liverpool / Leicester / London?) and "BCS" unknown — ask user before searching for this one
+Straits Manor              — student residence group (公寓群) — ⚠️ city not confirmed — ask user before searching for this one
 ```
 
-Campus Confessions and Reality TV Rants are excluded from this pipeline entirely (not an offline-event audience). ZYMIX Deal Hunters is deprioritized (low priority). IC Collective = Imperial College London. Everything from UCL Hub / IC Collective / University of St Andrews down is a **location-based community** (53 total): mostly one per university, plus a few student-residence groups (Kensington House Social, 88 Bromsgrove, true Birmingham, SCCB), area food groups (Bristol Rd Food & Drinks, Birmingham Chinatown) and affinity societies (Strathclyde CSSA, UOM TWSOC). For all of these, location decides the match; for the area-food and affinity ones, also check the interest/affinity fit. Communities marked ⚠️ have an unconfirmed identity or city — confirm with the user before spending a search round on them.
+Campus Confessions and Reality TV Rants are excluded from this pipeline entirely (not an offline-event audience). ZYMIX Deal Hunters is deprioritized (low priority). IC Collective = Imperial College London. Everything from UCL Hub / IC Collective / University of St Andrews down is a **location-based community** (53 total): mostly one per university, plus student-residence groups/公寓群 (Kensington House Social, Bristol Rd Food & Drinks, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Straits Manor) and society groups/社团群 (Strathclyde Chinese Students and Scholars, UOM TWSOC 26/27, LSE 0926 fresher picnic, Birmingham Chinatown | Food &Events, UOL BCS 26/27). For all of these, location decides the match; for the affinity/interest-flavoured society groups (Strathclyde Chinese, UOM TWSOC, Birmingham Chinatown), also check that fit. Communities marked ⚠️ have an unconfirmed identity or city — confirm with the user before spending a search round on them.
 
 **Shared-city groups — search the city once, then match the same event to every relevant community in it, rather than re-searching per school:**
 - **London**: UCL Hub, IC Collective, Royal College of Art, King's College London, London School of Economics, LSE 0926 fresher picnic, Queen Mary University of London, Kensington House Social (St Mary's Twickenham is outer south-west London — only pull central-London events that are easy to reach)
-- **Birmingham**: BCU Fresher Hub 2026, Aston Fresher Hub 2026, SCCB| Birmingham Student Life, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Birmingham Chinatown | Food &Events, Bristol Rd Food & Drinks (the last two need the food/area fit as well)
+- **Birmingham**: BCU Fresher Hub 2026, Aston Fresher Hub 2026, SCCB| Birmingham Student Life, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Birmingham Chinatown | Food &Events, Bristol Rd Food & Drinks (Birmingham Chinatown also needs the food/Chinese-culture fit; Bristol Rd leans Selly Oak/Edgbaston)
 - **Glasgow**: Glasgow City College, Glasgow Caledonian University, University of Strathclyde, University of Strathclyde Chinese Students and Scholars
 - **Edinburgh**: Heriot-Watt University, University of Edinburgh Freshers 2026
 - **Manchester**: The University of Manchester, UOM TWSOC 26/27
@@ -107,6 +107,63 @@ Campus Confessions and Reality TV Rants are excluded from this pipeline entirely
 - **Stoke-on-Trent area**: Staffs Student Life | Stoke, Keele Campus Life
 
 "Group 2" communities (Newcastle university 2, Leeds University group 2) are the same audience as their first group — they always get exactly the same matches. Wolverhampton and Walsall are both University of Wolverhampton campuses in different towns — a Wolverhampton-area event and a Walsall-area event are usually distinct, but check both if a source describes an event as serving "both campuses." Likewise University of Lancashire (Preston) and University of Lancaster (Lancaster), and Durham vs Newcastle, are different towns — don't merge them.
+
+### 社群中文名对照(地点类,用户提供)
+
+输出表里给用户看时可附中文名;搜索与匹配仍以英文社群名为准。
+
+| 社群 | 中文名 / 类型 |
+|---|---|
+| University of St Andrews | 圣安德鲁大学 |
+| Glasgow City College | 格拉斯哥城市大学 |
+| Glasgow Caledonian University | 格拉斯哥卡利多尼安大学 |
+| University of West of Scotland | 西苏格兰大学 |
+| Heriot-Watt University | 赫瑞瓦特大学 |
+| Royal College of Art | 皇家艺术学院 |
+| Coventry Fresher Hub 2026 | 考文垂大学 |
+| University of Stirling | 斯特林大学 |
+| BCU Fresher Hub 2026 | 伯明翰城市大学 |
+| Aston Fresher Hub 2026 | 阿斯顿大学 |
+| Wolverhampton Freshers Hub 2026 | 伍尔弗汉普顿大学 |
+| Kensington House Social | Kensington House 公寓群 |
+| Sheffield Hallam University | 谢菲尔德哈勒姆大学 |
+| St Mary's University, Twickenham | 圣玛丽大学 |
+| University of Lancashire | 兰开夏大学 |
+| University of Chester | 切斯特大学 |
+| University of Lancaster | 兰卡斯特大学 |
+| University of Strathclyde | 思克莱德大学 |
+| SCCB\| Birmingham Student Life | South & City College Birmingham |
+| Staffs Student Life \| Stoke | 斯塔福德郡大学(斯托克) |
+| Keele Campus Life | 基尔大学 |
+| Newcastle university | 纽卡斯尔大学 |
+| Newcastle university 2 | 纽卡斯尔大学 2 群 |
+| Northumbria university | 诺桑比亚大学 |
+| Huddersfield Uni Student Hub | 哈德斯菲尔德大学 |
+| University of Strathclyde Chinese Students and Scholars | 思克莱德大学中秋群 |
+| Bristol Rd Food & Drinks | Bristol Rd & Selly Oak 公寓群 |
+| King's College London | KCL(伦敦国王学院) |
+| University of Cardiff | 卡迪夫大学 |
+| Hull Uni Student Hub | 赫尔大学 |
+| London School of Economics | LSE(伦敦政经) |
+| LSE 0926 fresher picnic | LSE 社团群 |
+| Leeds Uni Student Hub | 利兹大学 |
+| Leeds University group 2 | 利兹大学 2 群 |
+| University of Sheffield | 谢菲尔德大学 |
+| University of Leicester | 莱斯特大学 |
+| Harper Adams Campus Life | 哈珀亚当斯大学 |
+| University of Edinburgh Freshers 2026 | 爱丁堡大学 |
+| Queen Mary University of London | 伦敦玛丽女王大学 |
+| University of Aberdeen Freshers 2026 | 阿伯丁大学 |
+| Cardiff Metropolitan University | 卡迪夫城市大学 |
+| The University of Manchester | 曼彻斯特大学 |
+| UOM TWSOC 26/27 | 曼大社团群 |
+| 88 Bromsgrove Social Hub | 88 Bromsgrove 公寓群 |
+| true Birmingham Social Hub | true Birmingham 公寓群 |
+| Birmingham Chinatown \| Food &Events | 伯明翰唐人街社团群 |
+| UOL BCS 26/27 | 社团群 |
+| Straits Manor | Straits Manor 公寓群 |
+| university of york student hub | 约克大学 |
+| Durham university | 杜伦大学 |
 
 ## Workflow
 
