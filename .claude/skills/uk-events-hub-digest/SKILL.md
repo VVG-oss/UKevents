@@ -9,13 +9,12 @@ Turns scattered UK event listings into one table: deduped, categorized by why so
 
 **Structure note**: this pipeline previously matched events to 14 geographic "Student Hub" cities. That structure has been fully retired — matching is now by **interest/community fit**, not city/distance. Do not revive the old city-Hub mapping, Leeds dual-push rule, or 40km radius logic; none of it applies anymore.
 
-## Communities (78 total — 25 interest-based + 53 location-based; treated uniformly, no special-casing by type)
+## Communities (76 total — 23 interest-based + 53 location-based; treated uniformly, no special-casing by type)
 
 ```
 Birdwatch Brigade        — birdwatching, nature spotting, wildlife walks
 The Gaming Corner         — general gaming meetups, arcade/retro gaming, gaming bars/cafes
 Coffee Shop Hopping        — new cafe openings, coffee festivals, cafe crawls
-Campus Confessions         — ❌ anonymous campus confession/gossip board — not an offline-event audience, skip in this pipeline
 CS2 Frag Hub               — Counter-Strike 2 esports: LAN events, tournament viewing parties, gaming cafes hosting CS2
 Day Trip Buddies           — day trips/short excursions outside the city, city-break-adjacent outings
 Study Break Crew           — casual near-campus social hangouts, study-break socials, pub quiz
@@ -27,7 +26,6 @@ Live Music Crew            — gigs, concerts, live music of any genre
 Page Turners Club          — book clubs, author talks, literary festivals, bookshop events
 Paws UK                    — dog/pet meetups, dog-friendly events, pet expos
 Premier Fan Zone           — football (Premier League focus) — viewing parties, fan events
-Reality TV Rants           — ❌ reality TV show discussion/watch-party content — not an offline-event fit, skip in this pipeline
 Reel Talk Club             — film screenings, cinema events, film festivals/club nights
 Snack Finds & Picks        — food/snack tastings, pop-up food markets
 Outdoor Adventure Club     — hiking, climbing, camping, more intense outdoor activity than Walking Buddies
@@ -92,7 +90,7 @@ UOL BCS 26/27              — society group (社团群), 2026/27 — ⚠️ "UO
 Straits Manor              — student residence group (公寓群) — ⚠️ city not confirmed — ask user before searching for this one
 ```
 
-Campus Confessions and Reality TV Rants are excluded from this pipeline entirely (not an offline-event audience). ZYMIX Deal Hunters is deprioritized (low priority). IC Collective = Imperial College London. Everything from UCL Hub / IC Collective / University of St Andrews down is a **location-based community** (53 total): mostly one per university, plus student-residence groups/公寓群 (Kensington House Social, Bristol Rd Food & Drinks, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Straits Manor) and society groups/社团群 (Strathclyde Chinese Students and Scholars, UOM TWSOC 26/27, LSE 0926 fresher picnic, Birmingham Chinatown | Food &Events, UOL BCS 26/27). For all of these, location decides the match; for the affinity/interest-flavoured society groups (Strathclyde Chinese, UOM TWSOC, Birmingham Chinatown), also check that fit. Communities marked ⚠️ have an unconfirmed identity or city — confirm with the user before spending a search round on them.
+Campus Confessions and Reality TV Rants have been removed from the community list (not an offline-event audience) — do not add them back or match events to them. ZYMIX Deal Hunters is deprioritized (low priority). IC Collective = Imperial College London. Everything from UCL Hub / IC Collective / University of St Andrews down is a **location-based community** (53 total): mostly one per university, plus student-residence groups/公寓群 (Kensington House Social, Bristol Rd Food & Drinks, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Straits Manor) and society groups/社团群 (Strathclyde Chinese Students and Scholars, UOM TWSOC 26/27, LSE 0926 fresher picnic, Birmingham Chinatown | Food &Events, UOL BCS 26/27). For all of these, location decides the match; for the affinity/interest-flavoured society groups (Strathclyde Chinese, UOM TWSOC, Birmingham Chinatown), also check that fit. Communities marked ⚠️ have an unconfirmed identity or city — confirm with the user before spending a search round on them.
 
 **Shared-city groups — search the city once, then match the same event to every relevant community in it, rather than re-searching per school:**
 - **London**: UCL Hub, IC Collective, Royal College of Art, King's College London, London School of Economics, LSE 0926 fresher picnic, Queen Mary University of London, Kensington House Social (St Mary's Twickenham is outer south-west London — only pull central-London events that are easy to reach)
@@ -167,8 +165,8 @@ Campus Confessions and Reality TV Rants are excluded from this pipeline entirely
 
 ## Workflow
 
-1. **Before searching, lay out a Community coverage checklist** — all 78 communities down one side. This is the task list for the run; don't skip straight to searching without it. Given 78 communities is a large surface and each event now also needs an image (see Event imagery below), **cap each round at 3-5 communities** rather than trying more — agree scope with the user up front and split the full sweep across multiple rounds rather than silently doing a shallow pass on everything.
-2. **Search by interest/keyword, not by city** — for the 25 interest communities, search nationally for the relevant interest (e.g. `UK book club events this week`, `open water swimming events UK`), since these communities aren't tied to one location. For the 53 location-based communities, search near that specific institution's/residence's city instead (e.g. `St Andrews events this week`) — and remember many share a city (see the shared-city groups above: London, Birmingham, Glasgow, Edinburgh, Manchester, Newcastle, Leeds, Sheffield, Cardiff, Stoke), so one city search can feed multiple communities. Never combine multiple unrelated communities into a single query — this was tried once with cities and silently tanked coverage; the same risk applies here.
+1. **Before searching, lay out a Community coverage checklist** — all 76 communities down one side. This is the task list for the run; don't skip straight to searching without it. Given 76 communities is a large surface and each event now also needs an image (see Event imagery below), **cap each round at 3-5 communities** rather than trying more — agree scope with the user up front and split the full sweep across multiple rounds rather than silently doing a shallow pass on everything.
+2. **Search by interest/keyword, not by city** — for the 23 interest communities, search nationally for the relevant interest (e.g. `UK book club events this week`, `open water swimming events UK`), since these communities aren't tied to one location. For the 53 location-based communities, search near that specific institution's/residence's city instead (e.g. `St Andrews events this week`) — and remember many share a city (see the shared-city groups above: London, Birmingham, Glasgow, Edinburgh, Manchester, Newcastle, Leeds, Sheffield, Cardiff, Stoke), so one city search can feed multiple communities. Never combine multiple unrelated communities into a single query — this was tried once with cities and silently tanked coverage; the same risk applies here.
 3. **Pull from sources** (list below) for the requested time window (**7 days** for a near-term digest, **30 days** for a "what's hot coming up" digest — confirm which the user wants; don't default silently).
 4. **Curate, don't dump**: aim for **3-5 well-chosen candidates per community**, not an exhaustive list. Apply these filters before a candidate counts as a real pick:
    - Genuinely fits the community's interest (not just loosely adjacent).
@@ -179,7 +177,7 @@ Campus Confessions and Reality TV Rants are excluded from this pipeline entirely
 6. **Dedup** on title + date + venue. When the same event appears across multiple sources, merge into one record and keep every source URL — don't merge two events just because titles look similar.
 7. **Categorize** using the interest taxonomy below — this now maps close to directly onto the community list itself.
 8. **Heat-rate**: 高热度 / 中热度 / 潜在价值 — always attach the concrete evidence, never a bare label (see Heat Rating below). Followers/members ≠ attendees; never present platform reach or search ranking as popularity evidence.
-9. **Match to community/communities** — an event can fit more than one (e.g. an outdoor swim meetup could hit both Swim Wave Tribe and Outdoor Adventure Club; an event near a campus can hit both an interest community and a school community — don't restrict school-community matches to official student-society events only, any real event near enough to the campus counts). list all genuine fits, don't force a single pick. For the 53 location-based communities, location is the deciding factor same as before; for the 25 interest communities, interest-fit is the deciding factor, not geography.
+9. **Match to community/communities** — an event can fit more than one (e.g. an outdoor swim meetup could hit both Swim Wave Tribe and Outdoor Adventure Club; an event near a campus can hit both an interest community and a school community — don't restrict school-community matches to official student-society events only, any real event near enough to the campus counts). list all genuine fits, don't force a single pick. For the 53 location-based communities, location is the deciding factor same as before; for the 23 interest communities, interest-fit is the deciding factor, not geography.
 10. **Output** as a table: 活动名称 | 详细地址 | 地址质量 | 日期 | 类目 | 匹配社群 | 热度 | 热度依据 | 来源 | 推荐理由.
 11. **Always attach the coverage checklist from step 1, filled in** — mark each community as searched/found, searched/nothing found, or not searched (and why). A run that only covers some communities is fine — an unlabeled one that looks complete but isn't, is not.
 
