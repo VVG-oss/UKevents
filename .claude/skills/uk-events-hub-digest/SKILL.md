@@ -1,6 +1,6 @@
 ---
 name: uk-events-hub-digest
-description: Curate UK local offline events (music festivals, gigs, markets, walks, club nights, subculture meetups, etc.) and match each one to the right interest-based community (e.g. Live Music Crew, Outdoor Adventure Club, Page Turners Club) or location-based community (a university, student residence or local area group, e.g. University of St Andrews, 88 Bromsgrove Social Hub), with heat rating and reasoning. Use this whenever the user asks to collect/整理/汇总近期英国本地活动, wants an activity list for their communities, asks "which community does this event fit", or mentions Eventbrite/Skiddle/Meetup/Fatsoma/Songkick-style UK event sourcing for their community network. Always run this instead of a generic web search when the request is about populating or refreshing this event pipeline.
+description: Curate UK local offline events (music festivals, gigs, markets, walks, club nights, subculture meetups, etc.) and match each one to the right interest-based community (e.g. Live Music Crew, Outdoor Adventure Club, Page Turners Club) or university-based community (e.g. University of St Andrews, King's College London), with heat rating and reasoning. Use this whenever the user asks to collect/整理/汇总近期英国本地活动, wants an activity list for their communities, asks "which community does this event fit", or mentions Eventbrite/Skiddle/Meetup/Fatsoma/Songkick-style UK event sourcing for their community network. Always run this instead of a generic web search when the request is about populating or refreshing this event pipeline.
 ---
 
 # UK Events → Community Digest
@@ -9,7 +9,7 @@ Turns scattered UK event listings into one table: deduped, categorized by why so
 
 **Structure note**: this pipeline previously matched events to 14 geographic "Student Hub" cities. That structure has been fully retired — matching is now by **interest/community fit**, not city/distance. Do not revive the old city-Hub mapping, Leeds dual-push rule, or 40km radius logic; none of it applies anymore.
 
-## Communities (75 total — 22 interest-based + 53 location-based; treated uniformly, no special-casing by type)
+## Communities (65 total — 22 interest-based + 43 university-based; treated uniformly, no special-casing by type)
 
 ```
 Birdwatch Brigade        — birdwatching, nature spotting, wildlife walks
@@ -53,16 +53,12 @@ University of Sheffield    — school-specific: events in/near Sheffield
 St Mary's University, Twickenham — school-specific: events in/near Twickenham / south-west London (Richmond, Kingston); central London only if easy to reach
 King's College London      — school-specific: events in/near central London (Strand/Waterloo/Guy's campuses)
 London School of Economics — school-specific: events in/near central London (Holborn/Aldwych)
-LSE 0926 fresher picnic    — society group (社团群): LSE freshers group that formed around a picnic (0926 = 26 Sep, already past as of 29 Sep 2026) — treat as an LSE student audience, events in/near central London
 Queen Mary University of London — school-specific: events in/near east London (Mile End/Whitechapel)
-Kensington House Social    — student residence group (公寓群): residents of Kensington House — ⚠️ city not yet confirmed (London Kensington is the assumed default); confirm with user before searching
 University of Lancashire   — school-specific: formerly UCLan, main campus Preston — events in/near Preston
 University of Lancaster    — school-specific: **Lancaster University** — events in/near Lancaster (different town from Preston — don't merge with University of Lancashire)
 University of Chester      — school-specific: events in/near Chester
 University of Strathclyde  — school-specific: events in/near Glasgow city centre
-University of Strathclyde Chinese Students and Scholars — society group (思克莱德大学中秋群): Strathclyde Chinese students, group formed around Mid-Autumn Festival (25 Sep 2026, already past) — Glasgow events, favour ones with Chinese/East Asian or international-student appeal (festivals, Asian food, cultural events)
 The University of Manchester — school-specific: events in/near Manchester
-UOM TWSOC 26/27            — society group (社团群): University of Manchester Taiwanese Society 2026/27 — Manchester events, favour Taiwanese/East Asian or international-student appeal
 Newcastle university       — school-specific: events in/near Newcastle upon Tyne
 Newcastle university 2     — school-specific: second group of the same Newcastle University audience — same matches as Newcastle university
 Northumbria university     — school-specific: events in/near Newcastle upon Tyne
@@ -77,26 +73,19 @@ Staffs Student Life | Stoke — school-specific: **Staffordshire University** �
 Keele Campus Life          — school-specific: **Keele University** — events on campus / in Newcastle-under-Lyme / Stoke-on-Trent
 Harper Adams Campus Life   — school-specific: **Harper Adams University** (rural, Newport, Shropshire) — events in/near Newport/Telford; rural campus, so countryside/agri/day-trip events fit well
 SCCB| Birmingham Student Life — school-specific: **South & City College Birmingham** (FE college, campuses incl. Digbeth/Hall Green/Bournville) — events in/near Birmingham
-88 Bromsgrove Social Hub   — student residence group (公寓群): residents of 88 Bromsgrove Street, Birmingham (Southside/Chinatown) — events in/near Birmingham city centre
-true Birmingham Social Hub — student residence group (公寓群): residents of "true Birmingham" student accommodation — events in/near Birmingham city centre
-Birmingham Chinatown | Food &Events — society group (社团群), location + interest: food and events in/near Birmingham's Chinatown/Southside (Arcadian, Hurst St) — food openings, Asian food markets, Chinese festivals (e.g. Mid-Autumn, Lunar New Year)
-Bristol Rd Food & Drinks   — student residence group (公寓群): residents of **Bristol Road & Selly Oak** student accommodation, Birmingham (next to University of Birmingham) — events in/near Selly Oak/Edgbaston and Birmingham city centre; despite the name, not restricted to food/drink. Not Bristol the city.
 University of Cardiff      — school-specific: **Cardiff University** — events in/near Cardiff
 Cardiff Metropolitan University — school-specific: events in/near Cardiff (Llandaff/Cyncoed)
 University of Edinburgh Freshers 2026 — school-specific: events in/near Edinburgh
 University of Aberdeen Freshers 2026 — school-specific: events in/near Aberdeen
-UOL BCS 26/27              — society group (社团群), 2026/27 — ⚠️ "UOL" university not confirmed (Liverpool / Leicester / London?) and "BCS" unknown — ask user before searching for this one
-Straits Manor              — student residence group (公寓群) — ⚠️ city not confirmed — ask user before searching for this one
 ```
 
-Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters have been removed from the community list (not an offline-event audience) — do not add them back or match events to them. IC Collective = Imperial College London. Everything from UCL Hub / IC Collective / University of St Andrews down is a **location-based community** (53 total): mostly one per university, plus student-residence groups/公寓群 (Kensington House Social, Bristol Rd Food & Drinks, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Straits Manor) and society groups/社团群 (Strathclyde Chinese Students and Scholars, UOM TWSOC 26/27, LSE 0926 fresher picnic, Birmingham Chinatown | Food &Events, UOL BCS 26/27). For all of these, location decides the match; for the affinity/interest-flavoured society groups (Strathclyde Chinese, UOM TWSOC, Birmingham Chinatown), also check that fit. Communities marked ⚠️ have an unconfirmed identity or city — confirm with the user before spending a search round on them.
+Removed from this pipeline — do not add back or match events to them: Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters (not an offline-event audience), and **all society groups (社团群) and student-residence groups (公寓群)** (e.g. LSE 0926 fresher picnic, UOM TWSOC 26/27, UOL BCS 26/27, Birmingham Chinatown | Food &Events, University of Strathclyde Chinese Students and Scholars, Kensington House Social, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Bristol Rd Food & Drinks, Straits Manor). Only interest communities and university communities stay in scope. IC Collective = Imperial College London. Everything from UCL Hub / IC Collective / University of St Andrews down is a **university community** (43 total, one per university/college, plus two "group 2" duplicates). For all of these, location (near that institution's campus) decides the match.
 
 **Shared-city groups — search the city once, then match the same event to every relevant community in it, rather than re-searching per school:**
-- **London**: UCL Hub, IC Collective, Royal College of Art, King's College London, London School of Economics, LSE 0926 fresher picnic, Queen Mary University of London, Kensington House Social (St Mary's Twickenham is outer south-west London — only pull central-London events that are easy to reach)
-- **Birmingham**: BCU Fresher Hub 2026, Aston Fresher Hub 2026, SCCB| Birmingham Student Life, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Birmingham Chinatown | Food &Events, Bristol Rd Food & Drinks (Birmingham Chinatown also needs the food/Chinese-culture fit; Bristol Rd leans Selly Oak/Edgbaston)
-- **Glasgow**: Glasgow City College, Glasgow Caledonian University, University of Strathclyde, University of Strathclyde Chinese Students and Scholars
+- **London**: UCL Hub, IC Collective, Royal College of Art, King's College London, London School of Economics, Queen Mary University of London (St Mary's Twickenham is outer south-west London — only pull central-London events that are easy to reach)
+- **Birmingham**: BCU Fresher Hub 2026, Aston Fresher Hub 2026, SCCB| Birmingham Student Life
+- **Glasgow**: Glasgow City College, Glasgow Caledonian University, University of Strathclyde
 - **Edinburgh**: Heriot-Watt University, University of Edinburgh Freshers 2026
-- **Manchester**: The University of Manchester, UOM TWSOC 26/27
 - **Newcastle upon Tyne**: Newcastle university, Newcastle university 2, Northumbria university
 - **Leeds**: Leeds Uni Student Hub, Leeds University group 2
 - **Sheffield**: Sheffield Hallam University, University of Sheffield
@@ -105,7 +94,7 @@ Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters have been removed fr
 
 "Group 2" communities (Newcastle university 2, Leeds University group 2) are the same audience as their first group — they always get exactly the same matches. Wolverhampton and Walsall are both University of Wolverhampton campuses in different towns — a Wolverhampton-area event and a Walsall-area event are usually distinct, but check both if a source describes an event as serving "both campuses." Likewise University of Lancashire (Preston) and University of Lancaster (Lancaster), and Durham vs Newcastle, are different towns — don't merge them.
 
-### 社群中文名对照(地点类,用户提供)
+### 社群中文名对照(大学类,用户提供)
 
 输出表里给用户看时可附中文名;搜索与匹配仍以英文社群名为准。
 
@@ -122,7 +111,6 @@ Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters have been removed fr
 | BCU Fresher Hub 2026 | 伯明翰城市大学 |
 | Aston Fresher Hub 2026 | 阿斯顿大学 |
 | Wolverhampton Freshers Hub 2026 | 伍尔弗汉普顿大学 |
-| Kensington House Social | Kensington House 公寓群 |
 | Sheffield Hallam University | 谢菲尔德哈勒姆大学 |
 | St Mary's University, Twickenham | 圣玛丽大学 |
 | University of Lancashire | 兰开夏大学 |
@@ -136,13 +124,10 @@ Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters have been removed fr
 | Newcastle university 2 | 纽卡斯尔大学 2 群 |
 | Northumbria university | 诺桑比亚大学 |
 | Huddersfield Uni Student Hub | 哈德斯菲尔德大学 |
-| University of Strathclyde Chinese Students and Scholars | 思克莱德大学中秋群 |
-| Bristol Rd Food & Drinks | Bristol Rd & Selly Oak 公寓群 |
 | King's College London | KCL(伦敦国王学院) |
 | University of Cardiff | 卡迪夫大学 |
 | Hull Uni Student Hub | 赫尔大学 |
 | London School of Economics | LSE(伦敦政经) |
-| LSE 0926 fresher picnic | LSE 社团群 |
 | Leeds Uni Student Hub | 利兹大学 |
 | Leeds University group 2 | 利兹大学 2 群 |
 | University of Sheffield | 谢菲尔德大学 |
@@ -153,19 +138,13 @@ Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters have been removed fr
 | University of Aberdeen Freshers 2026 | 阿伯丁大学 |
 | Cardiff Metropolitan University | 卡迪夫城市大学 |
 | The University of Manchester | 曼彻斯特大学 |
-| UOM TWSOC 26/27 | 曼大社团群 |
-| 88 Bromsgrove Social Hub | 88 Bromsgrove 公寓群 |
-| true Birmingham Social Hub | true Birmingham 公寓群 |
-| Birmingham Chinatown \| Food &Events | 伯明翰唐人街社团群 |
-| UOL BCS 26/27 | 社团群 |
-| Straits Manor | Straits Manor 公寓群 |
 | university of york student hub | 约克大学 |
 | Durham university | 杜伦大学 |
 
 ## Workflow
 
 1. **Before searching, lay out a Community coverage checklist** — all 75 communities down one side. This is the task list for the run; don't skip straight to searching without it. Given 75 communities is a large surface and each event now also needs an image (see Event imagery below), **cap each round at 3-5 communities** rather than trying more — agree scope with the user up front and split the full sweep across multiple rounds rather than silently doing a shallow pass on everything.
-2. **Search by interest/keyword, not by city** — for the 22 interest communities, search nationally for the relevant interest (e.g. `UK book club events this week`, `open water swimming events UK`), since these communities aren't tied to one location. For the 53 location-based communities, search near that specific institution's/residence's city instead (e.g. `St Andrews events this week`) — and remember many share a city (see the shared-city groups above: London, Birmingham, Glasgow, Edinburgh, Manchester, Newcastle, Leeds, Sheffield, Cardiff, Stoke), so one city search can feed multiple communities. Never combine multiple unrelated communities into a single query — this was tried once with cities and silently tanked coverage; the same risk applies here.
+2. **Search by interest/keyword, not by city** — for the 22 interest communities, search nationally for the relevant interest (e.g. `UK book club events this week`, `open water swimming events UK`), since these communities aren't tied to one location. For the 43 university communities, search near that specific institution's city instead (e.g. `St Andrews events this week`) — and remember many share a city (see the shared-city groups above: London, Birmingham, Glasgow, Edinburgh, Newcastle, Leeds, Sheffield, Cardiff, Stoke), so one city search can feed multiple communities. Never combine multiple unrelated communities into a single query — this was tried once with cities and silently tanked coverage; the same risk applies here.
 3. **Pull from sources** (list below) for the requested time window (**7 days** for a near-term digest, **30 days** for a "what's hot coming up" digest — confirm which the user wants; don't default silently).
 4. **Curate, don't dump**: aim for **3-5 well-chosen candidates per community**, not an exhaustive list. Apply these filters before a candidate counts as a real pick:
    - Genuinely fits the community's interest (not just loosely adjacent).
@@ -176,7 +155,7 @@ Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters have been removed fr
 6. **Dedup** on title + date + venue. When the same event appears across multiple sources, merge into one record and keep every source URL — don't merge two events just because titles look similar.
 7. **Categorize** using the interest taxonomy below — this now maps close to directly onto the community list itself.
 8. **Heat-rate**: 高热度 / 中热度 / 潜在价值 — always attach the concrete evidence, never a bare label (see Heat Rating below). Followers/members ≠ attendees; never present platform reach or search ranking as popularity evidence.
-9. **Match to community/communities** — an event can fit more than one (e.g. an outdoor swim meetup could hit both Swim Wave Tribe and Outdoor Adventure Club; an event near a campus can hit both an interest community and a school community — don't restrict school-community matches to official student-society events only, any real event near enough to the campus counts). list all genuine fits, don't force a single pick. For the 53 location-based communities, location is the deciding factor same as before; for the 22 interest communities, interest-fit is the deciding factor, not geography.
+9. **Match to community/communities** — an event can fit more than one (e.g. an outdoor swim meetup could hit both Swim Wave Tribe and Outdoor Adventure Club; an event near a campus can hit both an interest community and a school community — don't restrict school-community matches to official student-society events only, any real event near enough to the campus counts). list all genuine fits, don't force a single pick. For the 43 university communities, location is the deciding factor same as before; for the 22 interest communities, interest-fit is the deciding factor, not geography.
 10. **Output** as a table: 活动名称 | 详细地址 | 地址质量 | 日期 | 类目 | 匹配社群 | 热度 | 热度依据 | 来源 | 推荐理由.
 11. **Always attach the coverage checklist from step 1, filled in** — mark each community as searched/found, searched/nothing found, or not searched (and why). A run that only covers some communities is fine — an unlabeled one that looks complete but isn't, is not.
 
