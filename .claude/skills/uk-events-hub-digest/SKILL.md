@@ -286,7 +286,13 @@ In cloud sessions only `WebSearch` works. `WebFetch` and `curl` to event or tick
 
 Deliver one Excel workbook per run (e.g. `data/UK_Events_TrackB_<window>.xlsx`), font Arial, with these sheets:
 
-### 1. `Track B 30天活动` — per-community post blocks (main sheet)
+### 0. `活动总表` — the full event list (first sheet, and the CSV export)
+
+This is the deliverable the user means by "all the event info": **one row per unique event**, sorted by date, with columns `序号 | 活动名称 | 详细地址 | 地址质量 | 日期 | 类目 | 匹配社群 (every community it goes to, one per line) | 匹配社群数 | 热度 | 热度依据 | 来源 | 推荐理由 | 图片链接 | 图片来源分级`. Always deliver it, both as the first sheet of the workbook and as a CSV (UTF-8 with BOM, so Excel opens Chinese correctly). The post-block sheet below is a second, posting-oriented view of the same data; it never replaces this list.
+
+**File compatibility**: openpyxl here writes inline strings and absolute package paths, and many phone, chat-app and online previewers can't open files written that way. Post-process every workbook into a shared-strings table with relative paths before delivering it. Write summary numbers as static values rather than formulas, because nothing in this environment can recalculate them.
+
+### 1. `Track B 30天活动` — per-community post blocks
 
 **The unit is the community you post to.** Each community gets one block. The block lists all the events that go to that community, one per row, and columns A–C are **merged vertically across the block's rows**:
 
