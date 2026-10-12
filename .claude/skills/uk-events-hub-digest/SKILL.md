@@ -9,7 +9,7 @@ Turns scattered UK event listings into one table: deduped, categorized by why so
 
 **Structure note**: this pipeline previously matched events to 14 geographic "Student Hub" cities. That structure has been fully retired — matching is now by **interest/community fit**, not city/distance. Do not revive the old city-Hub mapping, Leeds dual-push rule, or 40km radius logic; none of it applies anymore.
 
-## Communities (65 total — 22 interest-based + 43 university-based; treated uniformly, no special-casing by type)
+## Communities (75 total — 22 interest-based + 53 university-based; treated uniformly, no special-casing by type)
 
 ```
 Birdwatch Brigade        — birdwatching, nature spotting, wildlife walks
@@ -77,22 +77,35 @@ University of Cardiff      — school-specific: **Cardiff University** — event
 Cardiff Metropolitan University — school-specific: events in/near Cardiff (Llandaff/Cyncoed)
 University of Edinburgh Freshers 2026 — school-specific: events in/near Edinburgh
 University of Aberdeen Freshers 2026 — school-specific: events in/near Aberdeen
+UCL                        — school-specific: second group of the same University College London audience — same matches as UCL Hub
+Manchester Metropolitan University — school-specific: events in/near Manchester (All Saints / Oxford Road campus)
+UCB Student Life           — school-specific: **University College Birmingham** (Summer Row / Moss House, city centre) — events in/near Birmingham
+Warwick Student Life       — school-specific: **University of Warwick** (main campus on the south edge of Coventry; also Leamington Spa / Kenilworth) — events in/near Coventry & Leamington
+De Montfort University     — school-specific: events in/near Leicester (city-centre campus)
+Leeds University group 3   — school-specific: another group of the same University of Leeds audience — same matches as Leeds Uni Student Hub
+Leeds University group 4   — school-specific: another group of the same University of Leeds audience — same matches as Leeds Uni Student Hub
+Leeds University group 5   — school-specific: another group of the same University of Leeds audience — same matches as Leeds Uni Student Hub
+Leeds University group 6   — school-specific: another group of the same University of Leeds audience — same matches as Leeds Uni Student Hub
+Leeds University group 7   — school-specific: another group of the same University of Leeds audience — same matches as Leeds Uni Student Hub
 ```
 
-Removed from this pipeline — do not add back or match events to them: Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters (not an offline-event audience), and **all society groups (社团群) and student-residence groups (公寓群)** (e.g. LSE 0926 fresher picnic, UOM TWSOC 26/27, UOL BCS 26/27, Birmingham Chinatown | Food &Events, University of Strathclyde Chinese Students and Scholars, Kensington House Social, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Bristol Rd Food & Drinks, Straits Manor). Only interest communities and university communities stay in scope. IC Collective = Imperial College London. Everything from UCL Hub / IC Collective / University of St Andrews down is a **university community** (43 total, one per university/college, plus two "group 2" duplicates). For all of these, location (near that institution's campus) decides the match.
+Removed from this pipeline — do not add back or match events to them: Campus Confessions, Reality TV Rants and ZYMIX Deal Hunters (not an offline-event audience), and **all society groups (社团群) and student-residence groups (公寓群)** (e.g. LSE 0926 fresher picnic, UOM TWSOC 26/27, UOL BCS 26/27, UOL Japanese society 26/27, Birmingham Chinatown | Food &Events, University of Strathclyde Chinese Students and Scholars, Kensington House Social, 88 Bromsgrove Social Hub, true Birmingham Social Hub, Bristol Rd Food & Drinks, Straits Manor, Cavendish place, Calico student apartment, the shield, Roman house). When the user sends a new community list, compare it against both the active list and this removed list, and apply the same rule to new names. If a name could be either a residence or a university group, say which way you classified it. Only interest communities and university communities stay in scope. IC Collective = Imperial College London. Everything from UCL Hub / IC Collective / University of St Andrews down is a **university community** (53 total, one per university/college, plus duplicate groups of the same audience: UCL ×2, Newcastle ×2, Leeds ×7). For all of these, location (near that institution's campus) decides the match.
 
 **Shared-city groups — search the city once, then match the same event to every relevant community in it, rather than re-searching per school:**
-- **London**: UCL Hub, IC Collective, Royal College of Art, King's College London, London School of Economics, Queen Mary University of London (St Mary's Twickenham is outer south-west London — only pull central-London events that are easy to reach)
-- **Birmingham**: BCU Fresher Hub 2026, Aston Fresher Hub 2026, SCCB| Birmingham Student Life
+- **London**: UCL Hub, UCL, IC Collective, Royal College of Art, King's College London, London School of Economics, Queen Mary University of London (St Mary's Twickenham is outer south-west London — only pull central-London events that are easy to reach)
+- **Birmingham**: BCU Fresher Hub 2026, Aston Fresher Hub 2026, SCCB| Birmingham Student Life, UCB Student Life
 - **Glasgow**: Glasgow City College, Glasgow Caledonian University, University of Strathclyde
 - **Edinburgh**: Heriot-Watt University, University of Edinburgh Freshers 2026
 - **Newcastle upon Tyne**: Newcastle university, Newcastle university 2, Northumbria university
-- **Leeds**: Leeds Uni Student Hub, Leeds University group 2
+- **Leeds**: Leeds Uni Student Hub, Leeds University group 2–7 (seven groups, one audience)
+- **Manchester**: The University of Manchester, Manchester Metropolitan University
+- **Coventry**: Coventry Fresher Hub 2026, Warwick Student Life (Warwick also reaches Leamington Spa)
+- **Leicester**: University of Leicester, De Montfort University
 - **Sheffield**: Sheffield Hallam University, University of Sheffield
 - **Cardiff**: University of Cardiff, Cardiff Metropolitan University
 - **Stoke-on-Trent area**: Staffs Student Life | Stoke, Keele Campus Life
 
-"Group 2" communities (Newcastle university 2, Leeds University group 2) are the same audience as their first group — they always get exactly the same matches. Wolverhampton and Walsall are both University of Wolverhampton campuses in different towns — a Wolverhampton-area event and a Walsall-area event are usually distinct, but check both if a source describes an event as serving "both campuses." Likewise University of Lancashire (Preston) and University of Lancaster (Lancaster), and Durham vs Newcastle, are different towns — don't merge them.
+Duplicate groups (UCL, Newcastle university 2, Leeds University group 2–7) are the same audience as their first group — they always get exactly the same matches. Wolverhampton and Walsall are both University of Wolverhampton campuses in different towns — a Wolverhampton-area event and a Walsall-area event are usually distinct, but check both if a source describes an event as serving "both campuses." Likewise University of Lancashire (Preston) and University of Lancaster (Lancaster), and Durham vs Newcastle, are different towns — don't merge them.
 
 ### 社群中文名对照(大学类,用户提供)
 
@@ -140,11 +153,17 @@ Removed from this pipeline — do not add back or match events to them: Campus C
 | The University of Manchester | 曼彻斯特大学 |
 | university of york student hub | 约克大学 |
 | Durham university | 杜伦大学 |
+| UCL | UCL 2 群 |
+| Manchester Metropolitan University | 曼彻斯特城市大学 |
+| UCB Student Life | 伯明翰大学学院 |
+| Warwick Student Life | 华威大学 |
+| De Montfort University | 德蒙福特大学 |
+| Leeds University group 3–7 | 利兹大学 3–7 群 |
 
 ## Workflow
 
-1. **Before searching, lay out a Community coverage checklist** — all 65 communities down one side. This is the task list for the run; don't skip straight to searching without it. Given 65 communities is a large surface and each event now also needs an image (see Event imagery below), **cap each round at 3-5 communities** rather than trying more — agree scope with the user up front and split the full sweep across multiple rounds rather than silently doing a shallow pass on everything.
-2. **Search by interest/keyword, not by city** — for the 22 interest communities, search nationally for the relevant interest (e.g. `UK book club events this week`, `open water swimming events UK`), since these communities aren't tied to one location. For the 43 university communities, search near that specific institution's city instead (e.g. `St Andrews events this week`) — and remember many share a city (see the shared-city groups above: London, Birmingham, Glasgow, Edinburgh, Newcastle, Leeds, Sheffield, Cardiff, Stoke), so one city search can feed multiple communities. Never combine multiple unrelated communities into a single query — this was tried once with cities and silently tanked coverage; the same risk applies here.
+1. **Before searching, lay out a Community coverage checklist** — all 75 communities down one side. This is the task list for the run; don't skip straight to searching without it. Given 75 communities is a large surface and each event now also needs an image (see Event imagery below), **cap each round at 3-5 communities** rather than trying more — agree scope with the user up front and split the full sweep across multiple rounds rather than silently doing a shallow pass on everything.
+2. **Search by interest/keyword, not by city** — for the 22 interest communities, search nationally for the relevant interest (e.g. `UK book club events this week`, `open water swimming events UK`), since these communities aren't tied to one location. For the 53 university communities, search near that specific institution's city instead (e.g. `St Andrews events this week`) — and remember many share a city (see the shared-city groups above: London, Birmingham, Glasgow, Edinburgh, Newcastle, Leeds, Manchester, Coventry, Leicester, Sheffield, Cardiff, Stoke), so one city search can feed multiple communities. Never combine multiple unrelated communities into a single query — this was tried once with cities and silently tanked coverage; the same risk applies here.
 3. **Pull from sources** (list below) for the requested time window (**7 days** for a near-term digest, **30 days** for a "what's hot coming up" digest — confirm which the user wants; don't default silently).
 4. **Curate, don't dump**: aim for **3-5 well-chosen candidates per community**, not an exhaustive list. Apply these filters before a candidate counts as a real pick:
    - Genuinely fits the community's interest (not just loosely adjacent).
@@ -155,7 +174,7 @@ Removed from this pipeline — do not add back or match events to them: Campus C
 6. **Dedup** on title + date + venue. When the same event appears across multiple sources, merge into one record and keep every source URL — don't merge two events just because titles look similar.
 7. **Categorize** using the interest taxonomy below — this now maps close to directly onto the community list itself.
 8. **Heat-rate**: 高热度 / 中热度 / 潜在价值 — always attach the concrete evidence, never a bare label (see Heat Rating below). Followers/members ≠ attendees; never present platform reach or search ranking as popularity evidence.
-9. **Match to community/communities** — an event can fit more than one (e.g. an outdoor swim meetup could hit both Swim Wave Tribe and Outdoor Adventure Club; an event near a campus can hit both an interest community and a school community — don't restrict school-community matches to official student-society events only, any real event near enough to the campus counts). list all genuine fits, don't force a single pick. For the 43 university communities, location is the deciding factor same as before; for the 22 interest communities, interest-fit is the deciding factor, not geography.
+9. **Match to community/communities** — an event can fit more than one (e.g. an outdoor swim meetup could hit both Swim Wave Tribe and Outdoor Adventure Club; an event near a campus can hit both an interest community and a school community — don't restrict school-community matches to official student-society events only, any real event near enough to the campus counts). list all genuine fits, don't force a single pick. For the 53 university communities, location is the deciding factor same as before; for the 22 interest communities, interest-fit is the deciding factor, not geography.
 10. **Output** as an Excel workbook in the per-community post-block layout — see **Output format** at the end of this file.
 11. **Always attach the coverage checklist from step 1, filled in** — mark each community as searched/found, searched/nothing found, or not searched (and why). A run that only covers some communities is fine — an unlabeled one that looks complete but isn't, is not.
 
